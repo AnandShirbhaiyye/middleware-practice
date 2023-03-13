@@ -1,12 +1,12 @@
 import express from "express";
 const app = express();
 app.use(express.json());
-
-const TOKEN = "Anand@12345shir";
+import dotenv from "dotenv";
+dotenv.config();
 
 const checkToken = (req, res, next) => {
   const { token } = req.body;
-  if (token !== TOKEN) {
+  if (token !== process.env.TOKEN) {
     return res.status(401).json({
       success: false,
       message: "Unauthorized token",
